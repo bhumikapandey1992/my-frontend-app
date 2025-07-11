@@ -1,38 +1,166 @@
+/* my-frontend-app/src/App.css */
+
+/* General Body and App container styling */
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f0f2f5; /* Light grey background for the whole page */
+  color: #333;
+}
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Styling */
+.App-header {
+  background-color: #282c34; /* Dark background */
+  padding: 30px 20px;
+  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.App-logo {
+  height: 80px; /* Slightly smaller logo */
+  pointer-events: none;
+  animation: App-logo-spin infinite 20s linear; /* Keep spin animation */
+  margin-bottom: 15px;
+}
+
+.App-header h1 {
+  font-size: 2.8em; /* Larger, more prominent title */
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.App-header p {
+  font-size: 1.1em;
+  margin-top: 10px;
+  color: #a0a0a0;
 }
 
 .App-link {
   color: #61dafb;
+  text-decoration: none;
+  margin-top: 15px;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
 
+.App-link:hover {
+  color: #21a1f1;
+}
+
+/* Main Content Area */
+main {
+  flex-grow: 1; /* Allows main content to take up available space */
+  padding: 20px;
+}
+
+/* Product List Container */
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px; /* Increased space between cards */
+  padding: 20px;
+  max-width: 1300px; /* Slightly wider layout */
+  margin: 30px auto; /* More margin from header */
+}
+
+/* Individual Product Card Styling */
+.product-card {
+  background-color: #ffffff; /* White background for cards */
+  border: 1px solid #e0e0e0; /* Lighter border */
+  border-radius: 12px; /* More rounded corners */
+  padding: 25px;
+  width: 320px; /* Slightly wider cards */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px; /* Ensure cards have a minimum height */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover */
+  cursor: pointer; /* Indicate interactivity */
+}
+
+.product-card:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25); /* Stronger shadow on hover */
+}
+
+.product-card h2 {
+  color: #2c3e50; /* Darker, more professional color */
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.8em; /* Larger product name */
+  font-weight: 600;
+}
+
+.product-card p {
+  color: #555; /* Slightly darker text for descriptions */
+  font-size: 1em; /* Slightly larger text */
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.product-card p strong {
+  color: #1a1a1a; /* Very dark for labels */
+  font-weight: 700;
+}
+
+/* Specific styling for price and stock */
+.product-card p:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Footer Styling */
+.App-footer {
+  margin-top: auto; /* Pushes footer to the bottom */
+  padding: 25px;
+  background-color: #34495e; /* Darker, more cohesive footer color */
+  color: #ecf0f1; /* Light text color */
+  width: 100%;
+  font-size: 0.9em;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Keyframe for logo animation */
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .App-header h1 {
+    font-size: 2em;
+  }
+
+  .product-card {
+    width: 90%; /* Make cards take more width on smaller screens */
+    max-width: 350px; /* Max width for mobile cards */
+  }
+
+  .product-list {
+    padding: 15px;
+    gap: 15px;
   }
 }
