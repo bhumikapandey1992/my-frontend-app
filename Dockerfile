@@ -1,6 +1,11 @@
 # Stage 1 : Build react app
 FROM node:20-alpine AS build
 
+# Declare a build argument to receive the backend URL
+ARG REACT_APP_BACKEND_URL
+# Set it as an environment variable for the build process
+ENV REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL
+
 # set the working directory inside the container
 WORKDIR /app
 
