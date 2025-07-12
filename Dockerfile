@@ -21,13 +21,14 @@ COPY . .
 
 # Build the react application for production
 # Pass the environment variable directly to the build command
-RUN REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL npm run build # <--- THIS LINE IS KEY!
+# THIS IS THE MOST RELIABLE WAY TO ENSURE REACT SEES IT
+RUN REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL npm run build # <--- MODIFIED THIS LINE!
 
 # Stage 2 : Serve the React application with Nginx
 FROM nginx:alpine
 
 # copy the custom Nginx config file
-COPY nginx.conf /etc/nginx/conf.d/default.conf # <--- This will now include no-cache headers
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # copy the build react static files from the 'build' stage (the first stage)
 # into Nginx's default public web serving directory
