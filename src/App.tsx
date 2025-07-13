@@ -57,7 +57,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Product Catalog</h1>
+        <img src={logo} className="App-logo" alt="logo" />
+        <h1>Product Catalog</h1> 
       </header>
       <main>
         {loading && <p>Loading products...</p>}
@@ -84,5 +85,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
