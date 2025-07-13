@@ -8,7 +8,7 @@ on:
 
 env:
   # Environment variables for AWS and ECR
-  AWS_REGION: ${{ secrets.AWS_REGION }} # AWS region from GitHub Secrets
+  # AWS_REGION is now passed directly to the configure-aws-credentials action
   ECR_REPOSITORY: my-frontend-app # Name of your ECR repository
 
 jobs:
@@ -29,7 +29,8 @@ jobs:
           # Use Access Key/Secret Key for authentication
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }} # Use the AWS_REGION env var
+          aws-region: ${{ secrets.AWS_REGION }} # <--- CHANGED THIS LINE: Directly use secret
+          # No need for role-to-assume if using access keys
 
       - name: Login to Amazon ECR
         id: login-ecr
