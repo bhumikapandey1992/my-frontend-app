@@ -29,8 +29,7 @@ jobs:
           # Use Access Key/Secret Key for authentication
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }} # <--- CHANGED THIS LINE: Directly use secret
-          # No need for role-to-assume if using access keys
+          aws-region: ${{ secrets.AWS_REGION }} # Directly use secret
 
       - name: Login to Amazon ECR
         id: login-ecr
@@ -40,10 +39,11 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }} # Get ECR registry URL from login step
           IMAGE_TAG: latest # Tag for your Docker image
-          # Pass the EC2_HOST (Public IP) as a build argument to React
-          # This needs to be available at build time for the React app
           REACT_APP_BACKEND_URL: http://${{ secrets.EC2_HOST }}:8000/api/ # Use EC2_HOST secret
+          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }} # <--- ADDED THIS LINE
+          AWS_REGION: ${{ secrets.AWS_REGION }} # <--- ADDED THIS LINE
         run: |
           # Build the Docker image, passing the REACT_APP_BACKEND_URL as a build argument
           docker buildx build --platform linux/amd64 --build-arg REACT_APP_BACKEND_URL="${REACT_APP_BACKEND_URL}" -t "${AWS_ACCOUNT_ID}".dkr.ecr."${AWS_REGION}".amazonaws.com/my-frontend-app:latest --no-cache --force-rm --push .
+
           echo "Frontend image pushed to ECR: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
