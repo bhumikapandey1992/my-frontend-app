@@ -4,7 +4,7 @@ name: Build and Push Frontend to ECR
 on:
   push:
     branches:
-      - main # Trigger this workflow on pushes to the 'main' branch of frontend repo 
+      - main # Trigger this workflow on pushes to the 'main' branch of frontend repo
 
 env:
   # Environment variables for AWS and ECR
