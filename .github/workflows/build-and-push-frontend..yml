@@ -39,7 +39,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }} # Get ECR registry URL from login step
           IMAGE_TAG: latest # Tag for your Docker image
-          REACT_APP_BACKEND_URL: http://${{ secrets.EC2_HOST }}:8000/api/ # Use EC2_HOST secret
+          REACT_APP_BACKEND_URL: https://theproductpeek.shop/api/ # Use EC2_HOST secret
           AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }} # <--- ADDED THIS LINE
           AWS_REGION: ${{ secrets.AWS_REGION }} # <--- ADDED THIS LINE
         run: |
